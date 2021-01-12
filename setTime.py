@@ -26,15 +26,15 @@ def is_admin():
         return False
 
 
-if is_admin():
-    # Code of your program here
-    while True:
-        try:
-            get_web_time('www.baidu.com')
-        except Exception:
-            pass
-        finally:
-            time.sleep(10)
-else:
-    # Re-run the program with admin rights
-    ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
+if __name__ == "__main__":
+    if is_admin():
+        # Code of your program here
+        while True:
+            try:
+                get_web_time('www.baidu.com')
+                time.sleep(10)
+            except Exception:
+                pass
+    else:
+        # Re-run the program with admin rights
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
